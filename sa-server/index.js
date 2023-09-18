@@ -34,7 +34,7 @@ const httpApp = http.Server(app);
 
 // parsing incoming request data - Middleware Plugin
 
-const allowedOrigins = ["https://shareanalyticsfront.vercel.app"];
+const allowedOrigins = ["*"];
 
 app.use(
   cors({
@@ -58,7 +58,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // setting up routes
 
 app.use("/auth", authroute);
+app.get("/",function (req,res){
+  res.send("i am the homepage");
 
+})
 const PORT = process.env.PORT || 5000;
 
 httpApp.listen(PORT, () => {
