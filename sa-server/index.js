@@ -57,7 +57,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // setting up routes
 
-app.use("/auth", authroute);
+//app.use("/auth", authroute);
 app.get("/",function (req,res){
   res.send("i am the homepage");
 
