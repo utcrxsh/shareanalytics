@@ -9,6 +9,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import dbconfig from './config/dbconfig.js'; // necessary to import
 
+import cors from "cors";
+
 // importing swagger dependencies
 
 import swaggerUi from "swagger-ui-express";
@@ -31,6 +33,21 @@ const app = express();
 const httpApp = http.Server(app);
 
 // parsing incoming request data - Middleware Plugin
+
+const allowedOrigins = ["https://shareanalyticsfront.vercel.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Check if the origin is allowed
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
