@@ -57,7 +57,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // setting up routes
 
-app.use("/sa-server/auth", authroute);
+app.use("/auth", authroute);
 
 const PORT = process.env.PORT || 5000;
 
